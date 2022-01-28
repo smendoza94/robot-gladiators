@@ -8,11 +8,14 @@ var enemyHealth = 50;
 var enemyAttack = 12;
 
 var fight = function(enemyName) {
-    // alert players that they are starting the round
-    window.alert("Welcome to Robot Gladiators!");
-    var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.")
-    if (promptFight === "fight" || promptFight === "FIGHT") {
-        // subtract the value of `playerAttack` from the value of `enemyHealth` 
+    // repeat and execute as long as the enemy robot is alive
+    while(enemyHealth > 0) {
+        // alert players that they are starting the round
+        // window.alert("Welcome to Robot Gladiators!");
+        var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.")
+        if (promptFight === "fight" || promptFight === "FIGHT") {
+        
+            // subtract the value of `playerAttack` from the value of `enemyHealth` 
         // and use that result tp update the value in the `enemyHealth` variable.
         enemyHealth = enemyHealth - playerAttack;
 
@@ -45,8 +48,8 @@ var fight = function(enemyName) {
         else{
             window.alert(playerName + " still has " + playerHealth + " has left.");
         }
-    }
-    else if (promptFight === "skip" || promptFight === "SKIP"){
+        }
+        else if (promptFight === "skip" || promptFight === "SKIP"){
         // confirm player wants to skip
         var confirmSkip = window.confirm("Are you sure you'd like to quit?")
         
@@ -60,14 +63,18 @@ var fight = function(enemyName) {
         else {
             fight();
         }        
-    }
-    else {
+        }
+        else {
         window.alert("You need to choose a valid option. Try again!")
         fight();
-    }
+        }            
+    };
 };
 
 // fight();
 for(var i = 0; i < enemyNames.length; i++) {
-    fight(enemyNames[i]);
+    var pickedEnemyName = enemyNames[i];
+    enemyHealth = 50;
+    // call fight function with enemy-robot
+    fight(pickedEnemyName);
 }
